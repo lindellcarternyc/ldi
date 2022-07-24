@@ -1,0 +1,9 @@
+{
+  "name": "ldi",
+  "version": "1.0.0",
+  "description": "A DI Library",
+  "main": "index.js",
+  "repository": "https://github.com/lindellcarternyc/ldi.git",
+  "author": "lindellcarternyc <lindellcarternyc@gmail.com>",
+  "license": "MIT"
+}
