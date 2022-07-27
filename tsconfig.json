@@ -102,7 +102,6 @@
   },
   "exclude": [
     "node_modules",
-    "build",
-    "**/*.test.ts"
+    "build"
   ]
 }
