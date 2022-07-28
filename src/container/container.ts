@@ -16,6 +16,8 @@ type DependecyMetadata<T = unknown> =
 export class Container {
   private readonly dependencies: Map<DependencyId, DependecyMetadata> = new Map()
 
+  constructor(readonly id: string) { }
+
   set<T>(id: string, value: T): this
   set<T>(construct: Constructable<T>): this
   set<T>(id: DependencyId<T>, value?: T): this {
