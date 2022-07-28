@@ -1,27 +1,17 @@
-type Constructable<T> = new (...args: any[]) => T
+import { Constructable } from '../types/constructable.type'
+import { ServiceId } from '../types/service-id.type'
+import { ServiceMetadata } from '../types/service-metadata.type'
 
-type DependencyId<T = unknown> = 
-  | string
-  | Constructable<T>
-
-type DependecyMetadata<T = unknown> = 
-  | {
-    id: string
-    value: T
-  } | {
-    id: Constructable<T>
-    value: T | null
-  }
 
 export class Container {
-  private readonly dependencies: Map<DependencyId, DependecyMetadata> = new Map()
+  private readonly dependencies: Map<ServiceId, ServiceMetadata> = new Map()
 
   constructor(readonly id: string) { }
 
   set<T>(id: string, value: T): this
   set<T>(construct: Constructable<T>): this
-  set<T>(id: DependencyId<T>, value?: T): this {
-    let metadata: DependecyMetadata<T>
+  set<T>(id: ServiceId<T>, value?: T): this {
+    let metadata: ServiceMetadata<T>
 
     if (typeof id === 'string') {
       if (arguments.length === 2) {
@@ -44,8 +34,8 @@ export class Container {
     return this
   }
 
-  get<T>(id: DependencyId<T>): T {
-    const depedency = this.dependencies.get(id) as DependecyMetadata<T> | undefined
+  get<T>(id: ServiceId<T>): T {
+    const depedency = this.dependencies.get(id) as ServiceMetadata<T> | undefined
 
     if (depedency) {
       if (typeof depedency.id === 'string') return depedency.value!
