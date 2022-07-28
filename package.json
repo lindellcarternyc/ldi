@@ -8,6 +8,7 @@
   "license": "MIT",
   "scripts": {
     "test": "jest",
+    "test:c": "jest --coverage",
     "dev": "ts-node ./src"
   },
   "devDependencies": {
