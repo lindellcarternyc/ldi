@@ -15,6 +15,12 @@ describe(Container, () => {
       const c = container.set('a', 1)
       expect(c).toBe(container)
     })
+
+    it('throws an error if no value is provided', () => {
+      expect(() => {
+        container.set('a' as any)
+      }).toThrow()
+    })
   })
 
   describe('#get', () => {
@@ -22,6 +28,12 @@ describe(Container, () => {
       container.set('a', 1)
       const a = container.get('a')
       expect(a).toBe(1)
+    })
+
+    it('throws an error if provided a string id for a value that does not exist', () => {
+      expect(() => {
+        container.get('not-set')
+      }).toThrow()
     })
   })
 
